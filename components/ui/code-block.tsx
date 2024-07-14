@@ -7,6 +7,7 @@ import { coldarkCold, coldarkDark } from "react-syntax-highlighter/dist/cjs/styl
 import { useTheme } from "next-themes"
 
 import { DeployContractButton } from "@/components/deploy-contract-button"
+import { DeployTokenScriptButton } from "../deploy-tokenscript-button"
 import { Button } from "@/components/ui/button"
 import { IconCheck, IconCopy, IconDownload } from "@/components/ui/icons"
 import { cn, nanoid } from "@/lib/utils"
@@ -38,7 +39,8 @@ export const PROGRAMMING_LANGUAGES: Record<string, string> = {
   html: ".html",
   css: ".css",
   solidity: ".sol",
-  clarity: ".clar"
+  clarity: ".clar",
+  tokenscript: ".xml",
 }
 
 type CodeBlockProps = {
@@ -112,6 +114,8 @@ export const CodeBlock = memo(({ language, value }: CodeBlockProps) => {
         <span className="text-xs lowercase">{language}</span>
         <div className="flex items-center space-x-1">
           {language === "solidity" ? <DeployContractButton getSourceCode={() => value} /> : null}
+          {language === "tokenscript" ? <DeployContractButton getSourceCode={() => value} /> : null}
+          {language === "xml" ? <DeployContractButton getSourceCode={() => value} /> : null}
           <Button
             variant="ghost"
             className="focus-visible:ring-1 focus-visible:ring-gray-700 focus-visible:ring-offset-0"
