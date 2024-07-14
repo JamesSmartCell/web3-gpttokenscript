@@ -18,7 +18,7 @@ export const AGENTS_ARRAY: Agent[] = [
     imageUrl: "/assets/erc721.png"
   },
   {
-    id: "asst_Tgzrzv0VaSgTRMn8ufAULlZG",
+    id: "asst_JdKqmx2VWyBOCOchT7O7dKgQ",
     userId: "12901349",
     name: "W3GPT",
     description: "Develop smart contracts",
@@ -34,11 +34,11 @@ export const AGENTS_ARRAY: Agent[] = [
     imageUrl: "/assets/agent-factory.png"
   },
   {
-    id: "asst_flmwqt347rt4QBFhuGGMbpdJ",
+    id: "asst_fns5bh6XGZ8SHcmI60syHuHh",
     userId: "12901349",
-    name: "TokenScript",
-    description: "Create your own AI agent",
+    name: "Smart Token",
+    description: "Create a Smart Token",
     creator: "61cygni.eth",
-    imageUrl: "/assets/agent-factory.png"
+    imageUrl: "/assets/tokenscript.png"
   }
 ]

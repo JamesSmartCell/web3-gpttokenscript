@@ -47,7 +47,7 @@ const queryClient = new QueryClient()
 
 const config = getDefaultConfig({
   appName: "Web3 GPT",
-  appDescription: "Write and deploy smart contracts with AI",
+  appDescription: "Write and deploy smart tokens with AI",
   appUrl: APP_URL,
   appIcon: "/favicon.ico",
   projectId: `${process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}`,

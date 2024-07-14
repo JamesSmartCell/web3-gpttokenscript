@@ -57,7 +57,7 @@ export function Landing({ userId, disableAnimations }: LandingProps) {
         <div className="relative my-8 flex h-8 w-full md:my-12">
           <Image src={W3GPTLogo} alt="web3 gpt logo" priority={true} fill />
         </div>
-        <p className="text-lg font-bold tracking-tight lg:text-2xl lg:font-normal">Deploy smart contracts with AI</p>
+        <p className="text-lg font-bold tracking-tight lg:text-2xl lg:font-normal">Deploy smart tokens with AI</p>
 
         <div className="grid-row-3 my-5 mb-8 grid grid-flow-row gap-1 md:grid-flow-col md:gap-4">
           <div className="mx-3 grid grid-cols-3 content-center gap-1 md:grid-cols-1 md:gap-4">

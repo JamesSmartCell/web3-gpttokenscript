@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "W3GPT",
     short_name: "W3GPT",
-    description: "Write and deploy smart contracts with AI.",
+    description: "Write and deploy smart tokens with AI.",
     start_url: "/",
     display: "standalone",
     background_color: "#000000",

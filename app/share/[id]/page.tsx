@@ -14,7 +14,7 @@ import { APP_URL } from "@/app/config"
 export async function generateMetadata({ params }: ChatPageProps) {
   const metadata: Metadata = {
     title: "Shared Chat",
-    description: "Write and deploy smart contracts with AI",
+    description: "Write and deploy smart tokens with AI",
     openGraph: {
       images: [`${APP_URL}/api/og?id=${params.id}&h=630`],
       url: `${APP_URL}/share/${params.id}`
