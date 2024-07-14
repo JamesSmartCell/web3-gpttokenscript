@@ -17,11 +17,19 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
   useWallet: false
 }
 
+/*
+    id: "asst_fns5bh6XGZ8SHcmI60syHuHh",
+    userId: "12901349",
+    name: "Smart Token",
+    description: "Create a Smart Token",
+    creator: "61cygni.eth",
+    imageUrl: "/assets/tokenscript.png"*/
+
 export const DEFAULT_AGENT: Agent = {
-  id: "asst_Tgzrzv0VaSgTRMn8ufAULlZG",
+  id: "asst_fns5bh6XGZ8SHcmI60syHuHh",
   userId: "12901349",
-  name: "W3GPT",
-  description: "Develop smart contracts",
-  creator: "soko.eth",
-  imageUrl: "/assets/w3gpt.png"
+  name: "Smart Token",
+  description: "Create a Smart Token",
+  creator: "61cygni.eth",
+  imageUrl: "/assets/tokenscript.png"
 }

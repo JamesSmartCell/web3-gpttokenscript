@@ -72,7 +72,7 @@ export async function GET(req: NextRequest) {
         </div>
       </div>
       <div tw="flex items-center justify-between w-full mt-auto">
-        <div tw="text-[1.8rem] ml-auto text-[#9b9ba4]">w3gpt.ai</div>
+        <div tw="text-[1.8rem] ml-auto text-[#9b9ba4]">web3-gpttokenscript.vercel.app</div>
       </div>
     </div>,
     {
