@@ -14,6 +14,7 @@ import { DEFAULT_AGENT } from "@/app/config"
 import type { Agent } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { AgentCard } from "@/components/agent-card"
+import { toast } from "sonner"
 
 type ChatProps = {
   className?: string
