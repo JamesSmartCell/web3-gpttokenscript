@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     default: "W3GPT",
     template: "%s - W3GPT"
   },
-  description: "Write and deploy smart contracts with AI.",
+  description: "Write and deploy smart tokens with AI.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",

@@ -30,6 +30,8 @@ export function useDeployWithWallet() {
     }
     const fileName = `${contractName.replace(/[\/\\:*?"<>|.\s]+$/g, "_")}.sol`
 
+    const compileToast = toast.loading("Compiling contract...")
+
     // Prepare the sources object for the Solidity compiler
     const handleImportsResult = await handleImports(sourceCode)
 
@@ -119,6 +121,8 @@ export function useDeployWithWallet() {
       try {
         return JSON.parse(arg)
       } catch {
+        toast.dismiss(compileToast)
+        toast.error("Contract could not be compiled, please regenerate.")
         return arg
       }
     })

@@ -3,7 +3,7 @@ import handleImports from "@/lib/functions/deploy-contract/handle-imports"
 import { getExplorerUrl } from "@/lib/viem-utils"
 import { encodeFunctionData } from "viem"
 import { useAccount, usePublicClient, useWalletClient } from "wagmi"
-import toast from "react-hot-toast"
+import { toast } from "sonner"
 import { useGlobalStore } from "@/app/state/global-store"
 import { track } from "@vercel/analytics"
 import { parseAbiItem } from "viem";
@@ -33,7 +33,7 @@ export function useWriteToIPFS() {
     const ipfsCid = await ipfsStoreFilePin(tokenScriptSource);
     //const ipfsCid = await ipfsStoreFile(tokenScriptSource);
 
-    toast.remove(deployToast);
+    toast.dismiss(deployToast);
 
     if (ipfsCid === null) {
       toast.error("Error uploading to IPFS");
