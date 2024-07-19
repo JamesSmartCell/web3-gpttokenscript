@@ -666,7 +666,7 @@ export const getAgent = async (id: string) => {
   console.log(`AGENT_RT: ${await kv.hgetall(agentTxt)}`)
   console.log(`F_AGENT ${JSON.stringify(agent)}`);
   console.log(`FETCH: ${await kv.keys("*")}`);
-  return agentTS
+  return agent
 }
 
 export const getAgents = async () => {

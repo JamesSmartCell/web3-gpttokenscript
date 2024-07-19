@@ -106,3 +106,18 @@ export const getAiThreadMessages = async (threadId: string) => {
     } as Message
   })
 }
+
+const agent: Agent = {
+  id: "asst_fns5bh6XGZ8SHcmI60syHuHh",
+  userId: "12689544",
+  name: "Smart Token Deploy",
+  description: `Develop and deploy Smart Tokens. Use the assistant to create and deploy your TokenScript.`,
+  imageUrl: "https://ipfs.io/ipfs/QmNta15bDPgEtvG7NDxxL4mcfPhJ2urjaNU2vSWz2gHkxE",
+  creator: "Smart Token Labs"
+};
+
+const testResult = await storeAgent(
+  agent
+);
+
+console.log(testResult);
