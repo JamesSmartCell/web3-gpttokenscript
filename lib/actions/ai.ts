@@ -116,8 +116,8 @@ const agent: Agent = {
   creator: "Smart Token Labs"
 };
 
-const testResult = await storeAgent(
-  agent
-);
+// const testResult = await storeAgent(
+//   agent
+// );
 
-console.log(testResult);
+// console.log(testResult);
