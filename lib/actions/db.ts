@@ -273,6 +273,7 @@ export const getAgent = async (id: string) => {
   console.log(`CANNOT: agent:${id}`);
   console.log(`AGENT_RT: ${JSON.stringify(await kv.hgetall(agentTxt))}`)
   console.log(`F_AGENT ${JSON.stringify(agent)}`);
+  console.log(`FETCH: ${await kv.keys("*")}`);
   return agent
 }
 
