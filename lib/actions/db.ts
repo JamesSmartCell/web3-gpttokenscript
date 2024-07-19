@@ -267,7 +267,9 @@ export const deleteAgent = async (id: string) => {
 }
 
 export const getAgent = async (id: string) => {
+  console.log(`AGENT: ${id}`);
   const agent = await kv.hgetall<Agent>(`agent:${id}`)
+  console.log(`F_AGENT ${JSON.stringify(agent)}`);
   return agent
 }
 

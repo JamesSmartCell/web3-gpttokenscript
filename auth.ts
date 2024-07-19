@@ -27,6 +27,7 @@ export const {
           ...profile,
           id: profileId
         }
+        console.log(`USER: ${JSON.stringify(user)}`);
         await storeUser(user)
       }
       return token

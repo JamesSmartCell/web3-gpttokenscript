@@ -15,6 +15,8 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
 
   const chat = await getChat(params.id)
 
+  console.log(`GetChat: ${chat}`);
+
   if (!chat) {
     redirect("/")
   }
