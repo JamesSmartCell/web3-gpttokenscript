@@ -149,7 +149,7 @@ export function useDeployWithWallet() {
       return
     }
 
-    const ipfsLoadingToast = toast.loading("Uploading to IPFS...")
+    /*const ipfsLoadingToast = toast.loading("Uploading to IPFS...")
     const ipfsUploadResponse = await fetch("/api/ipfs-upload", {
       method: "POST",
       headers: {
@@ -171,7 +171,9 @@ export function useDeployWithWallet() {
       toast.error("Failed to upload to IPFS")
     } else {
       toast.success("Uploaded to IPFS successfully!")
-    }
+    }*/
+
+       const ipfsUrl = `https://nftstorage.link/ipfs/`
 
     const encodedConstructorArgs = deployData.slice(bytecode.length)
 
