@@ -271,7 +271,7 @@ export const getAgent = async (id: string) => {
   const agent = await kv.hgetall<Agent>(`agent:${id}`)
   let agentTxt = `agent:${id}`;
   console.log(`CANNOT: agent:${id}`);
-  console.log(`AGENT: ${await kv.hgetall(agentTxt)}`)
+  console.log(`AGENT_RT: ${JSON.stringify(await kv.hgetall(agentTxt))}`)
   console.log(`F_AGENT ${JSON.stringify(agent)}`);
   return agent
 }
