@@ -30,7 +30,7 @@ export const UserMenu = ({ user }: { user: Session["user"] }) => {
                 {user?.name ? getUserInitials(user?.name) : null}
               </div>
             )}
-            <span className="ml-2 hidden lg:flex">{user?.name && getUserInitials(user?.name)}</span>
+            <span className="ml-2 hidden lg:flex">{user?.name && getUserInitials(user?.name)}-{user?.id}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent sideOffset={8} align="start" className="w-[180px]">
