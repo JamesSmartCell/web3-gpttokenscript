@@ -27,7 +27,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
 
 export const DEFAULT_AGENT: Agent = {
   id: "asst_fns5bh6XGZ8SHcmI60syHuHh",
-  userId: "12901349",
+  userId: "12689544",
   name: "Smart Token",
   description: "Create a Smart Token",
   creator: "61cygni.eth",

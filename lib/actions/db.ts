@@ -269,6 +269,9 @@ export const deleteAgent = async (id: string) => {
 export const getAgent = async (id: string) => {
   console.log(`AGENT: ${id}`);
   const agent = await kv.hgetall<Agent>(`agent:${id}`)
+  let agentTxt = `agent:${id}`;
+  console.log(`CANNOT: agent:${id}`);
+  console.log(`AGENT: ${await kv.hgetall(agentTxt)}`)
   console.log(`F_AGENT ${JSON.stringify(agent)}`);
   return agent
 }
@@ -284,3 +287,6 @@ export const getAgents = async () => {
   const results = await pipeline.exec<Agent[]>()
   return results
 }
+
+//const tryServer = await getAgent("asst_fns5bh6XGZ8SHcmI60syHuHh");
+//console.log(`test: ${tryServer}`);

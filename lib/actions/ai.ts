@@ -5,6 +5,9 @@ import type { Message } from "ai"
 import { storeAgent } from "@/lib/actions/db"
 import { openai } from "@/lib/openai"
 import type { CreateAgentParams } from "@/lib/actions/types"
+import type { Agent } from "@/lib/types"
+
+
 
 export const createAgent = async ({
   name,
