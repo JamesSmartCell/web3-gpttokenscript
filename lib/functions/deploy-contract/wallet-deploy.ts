@@ -105,6 +105,8 @@ export function useDeployWithWallet() {
     const compileResult = await compileContractResponse.json()
     const { abi, bytecode } = compileResult
 
+    toast.dismiss(compileToast);
+
     const parsedConstructorArgs = constructorArgs.map((arg) => {
       if (arg.startsWith("[") && arg.endsWith("]")) {
         // Check if the string doesn't have double or single quotes after '[' and before ']'
@@ -121,7 +123,6 @@ export function useDeployWithWallet() {
       try {
         return JSON.parse(arg)
       } catch {
-        toast.dismiss(compileToast)
         toast.error("Contract could not be compiled, please regenerate.")
         return arg
       }
