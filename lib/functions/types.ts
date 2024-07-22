@@ -33,7 +33,7 @@ export type VerifyContractParams = {
 
 export type LastDeploymentData = {
   address?: Hex
-  chainId: Number
+  chainId: number
   transactionHash: Hex
   explorerUrl: string
   ipfsUrl?: string
