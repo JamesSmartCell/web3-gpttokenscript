@@ -87,9 +87,9 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         role: "system",
         content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       });
-      setLastDeploymentData(defaultDeploymentData);
+      //setLastDeploymentData(defaultDeploymentData);
     }
-  }, [threadIdFromAi, threadId, router, status, append, threadId]);
+  }, [threadIdFromAi, threadId, router, status, append, userId]);
   //}, [threadIdFromAi, threadId, router, status, userId])
 
   useEffect(() => {
@@ -97,10 +97,10 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
       append({
         id: threadId,
         role: "system",
-        content: `The user has set the scriptURI and dpeloyed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
+        content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
       })
     }
-  }, [threadIdFromAi, threadId, router, status, userId])
+  }, [threadIdFromAi, threadId, router, status, append, userId])
 
   return (
     <>
