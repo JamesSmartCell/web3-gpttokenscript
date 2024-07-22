@@ -46,6 +46,9 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
   })
 
   console.log(`CHAT1: ${threadId}, ${lastDeploymentData}, ${tokenScriptViewerUrl}`);
+  if (lastDeploymentData != undefined) {
+    console.log(`CHAT2: ${JSON.stringify(lastDeploymentData)}`);
+  }
 
   useEffect(() => {
     if (messages.length === 0 && initialMessages?.length > 0) {
@@ -68,7 +71,8 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         content: `The user has successfully deployed a contract manually here are the details: \n\n${JSON.stringify(lastDeploymentData, null, 2)}`
       })
     }
-  }, [threadIdFromAi, threadId, router, status, userId])
+  }, [lastDeploymentData, append, threadId]);  
+  //}, [threadIdFromAi, threadId, router, status, userId])
 
   useEffect(() => {
     if (tokenScriptViewerUrl) {
