@@ -31,6 +31,7 @@ export function useDeployWithWallet() {
     const fileName = `${contractName.replace(/[\/\\:*?"<>|.\s]+$/g, "_")}.sol`
 
     const compileToast = toast.loading("Compiling contract...")
+    const chainId = viemChain?.id || globalConfig.viemChain.id;
 
     // Prepare the sources object for the Solidity compiler
     const handleImportsResult = await handleImports(sourceCode)
@@ -211,6 +212,7 @@ export function useDeployWithWallet() {
 
       const deploymentData = {
         address,
+        chainId,
         transactionHash: deployHash,
         ipfsUrl,
         explorerUrl: txHashExplorerUrl,

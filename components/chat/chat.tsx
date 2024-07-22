@@ -64,14 +64,16 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
 
   useEffect(() => {
     if (lastDeploymentData) {
+      const contractAddress = lastDeploymentData.address;
+      const chainId = lastDeploymentData.chainId;
       console.log("new deployment detected ", lastDeploymentData)
       append({
         id: threadId,
         role: "system",
-        content: `The user has successfully deployed a contract manually here are the details: \n\n${JSON.stringify(lastDeploymentData, null, 2)}`
+        content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       })
     }
-  }, [lastDeploymentData, append, threadId]);  
+  }, [lastDeploymentData, append, threadId]);
   //}, [threadIdFromAi, threadId, router, status, userId])
 
   useEffect(() => {

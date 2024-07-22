@@ -114,8 +114,8 @@ export const CodeBlock = memo(({ language, value }: CodeBlockProps) => {
         <span className="text-xs lowercase">{language}</span>
         <div className="flex items-center space-x-1">
           {language === "solidity" ? <DeployContractButton getSourceCode={() => value} /> : null}
-          {language === "tokenscript" ? <DeployContractButton getSourceCode={() => value} /> : null}
-          {language === "xml" ? <DeployContractButton getSourceCode={() => value} /> : null}
+          {language === "tokenscript" ? <DeployTokenScriptButton getSourceCode={() => value} /> : null}
+          {language === "xml" ? <DeployTokenScriptButton getSourceCode={() => value} /> : null}
           <Button
             variant="ghost"
             className="focus-visible:ring-1 focus-visible:ring-gray-700 focus-visible:ring-offset-0"
