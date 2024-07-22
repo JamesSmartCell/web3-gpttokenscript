@@ -14,11 +14,7 @@ import { DEFAULT_AGENT } from "@/app/config"
 import type { Agent } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { AgentCard } from "@/components/agent-card"
-import { toast } from "sonner"
 import { useGlobalStore } from "@/app/state/global-store"
-import type {
-  LastDeploymentData,
-} from "@/lib/functions/types"
 
 type ChatProps = {
   className?: string
@@ -28,23 +24,11 @@ type ChatProps = {
   session?: Session
 }
 
-const defaultDeploymentData: LastDeploymentData = {
-  address: '0x0000000000000000000000000000000000000000',
-  chainId: 0,
-  transactionHash: '0x',
-  explorerUrl: '',
-  ipfsUrl: '',
-  abi: '',
-  verificationStatus: '',
-  standardJsonInput: '',
-  sourceCode: ''
-};
-
 export const Chat = ({ threadId, initialMessages = [], agent, className, session }: ChatProps) => {
   const avatarUrl = session?.user?.image
   const userId = session?.user?.id
   const router = useRouter()
-  const { tokenScriptViewerUrl, lastDeploymentData, setLastDeploymentData } = useGlobalStore()
+  const { tokenScriptViewerUrl, lastDeploymentData, completedDeploymentReport, setCompletedDeploymentReport, setTokenScriptViewerUrl } = useGlobalStore()
   const {
     messages,
     status,
@@ -78,7 +62,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
   }, [threadIdFromAi, threadId, router, status, userId])
 
   useEffect(() => {
-    if (lastDeploymentData && lastDeploymentData.chainId > 0) {
+    if (lastDeploymentData && !completedDeploymentReport) {
       const contractAddress = lastDeploymentData.address;
       const chainId = lastDeploymentData.chainId;
       console.log("new deployment detected ", lastDeploymentData)
@@ -87,6 +71,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         role: "system",
         content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       });
+      setCompletedDeploymentReport(true);
       //setLastDeploymentData(defaultDeploymentData);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId]);
@@ -98,7 +83,9 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         id: threadId,
         role: "system",
         content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
-      })
+      });
+      setCompletedDeploymentReport(false);
+      setTokenScriptViewerUrl(null);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId])
 
