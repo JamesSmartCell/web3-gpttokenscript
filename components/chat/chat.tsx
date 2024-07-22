@@ -29,7 +29,7 @@ type ChatProps = {
 }
 
 const defaultDeploymentData: LastDeploymentData = {
-  address: '0x',
+  address: '0x0000000000000000000000000000000000000000',
   chainId: 0,
   transactionHash: '0x',
   explorerUrl: '',

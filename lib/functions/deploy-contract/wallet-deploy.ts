@@ -231,6 +231,7 @@ export function useDeployWithWallet() {
       toast.dismiss(deployLoadingToast)
       toast.error("Contract deployment failed")
       const deploymentData = {
+        chainId: 0,
         transactionHash: deployHash,
         explorerUrl: txHashExplorerUrl,
         ipfsUrl,
