@@ -31,6 +31,8 @@ export default async function deployContract({
 
   const sourcesKeys = Object.keys(sources)
 
+  console.log(`SRC: ${JSON.stringify(sourcesKeys)}`);
+
   // Loop over each source
   for (const sourceKey of sourcesKeys) {
     let sourceCode = sources[sourceKey].content

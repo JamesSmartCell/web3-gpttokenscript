@@ -137,7 +137,6 @@ export function useDeployWithWallet() {
 
     const [account] = await walletClient.getAddresses()
 
-    const deployLoadingToast = toast.loading("Deploying contract...")
     const deployHash = await walletClient.deployContract({
       abi: abi,
       bytecode: bytecode,
@@ -146,10 +145,11 @@ export function useDeployWithWallet() {
     })
 
     if (!deployHash) {
-      toast.dismiss(deployLoadingToast)
       toast.error("Failed to deploy contract")
       return
     }
+
+    const deployLoadingToast = toast.loading("Deploying contract...")
 
     /*const ipfsLoadingToast = toast.loading("Uploading to IPFS...")
     const ipfsUploadResponse = await fetch("/api/ipfs-upload", {

@@ -72,10 +72,8 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       });
       setCompletedDeploymentReport(true);
-      //setLastDeploymentData(defaultDeploymentData);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId]);
-  //}, [threadIdFromAi, threadId, router, status, userId])
 
   useEffect(() => {
     if (tokenScriptViewerUrl) {
