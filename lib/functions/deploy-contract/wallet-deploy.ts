@@ -11,7 +11,7 @@ import { track } from "@vercel/analytics"
 export function useDeployWithWallet() {
   const { chain: viemChain } = useAccount()
   const { data: walletClient } = useWalletClient()
-  const { setLastDeploymentData, setVerifyContractConfig, globalConfig } = useGlobalStore()
+  const { setLastDeploymentData, setVerifyContractConfig, globalConfig, setCompletedDeploymentReport } = useGlobalStore()
   const publicClient = usePublicClient({
     chainId: viemChain?.id || globalConfig.viemChain.id
   })
@@ -150,6 +150,8 @@ export function useDeployWithWallet() {
     }
 
     const deployLoadingToast = toast.loading("Deploying contract...")
+
+    setCompletedDeploymentReport(false);
 
     /*const ipfsLoadingToast = toast.loading("Uploading to IPFS...")
     const ipfsUploadResponse = await fetch("/api/ipfs-upload", {

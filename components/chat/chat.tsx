@@ -86,7 +86,6 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         role: "system",
         content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
       });
-      setCompletedDeploymentReport(false);
       setTokenScriptViewerUrl(null);
       setReadyForTokenScript(false);
     }
