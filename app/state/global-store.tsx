@@ -26,6 +26,9 @@ interface GlobalState {
   completedDeploymentReport: boolean
   setCompletedDeploymentReport: (completed: boolean) => void
 
+  readyForTokenScript: boolean
+  setReadyForTokenScript: (ready: boolean) => void
+
   // loading states
   isLoading: boolean
   setIsLoading: (isLoading: boolean) => void
@@ -70,4 +73,7 @@ export const useGlobalStore = create<GlobalState>((set) => ({
 
   completedDeploymentReport: false,
   setCompletedDeploymentReport: (completedDeploymentReport: boolean) => set({ completedDeploymentReport }),
+
+  readyForTokenScript: false,
+  setReadyForTokenScript: (readyForTokenScript: boolean) => set({ readyForTokenScript }),
 }))

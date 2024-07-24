@@ -28,7 +28,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
   const avatarUrl = session?.user?.image
   const userId = session?.user?.id
   const router = useRouter()
-  const { tokenScriptViewerUrl, lastDeploymentData, completedDeploymentReport, setCompletedDeploymentReport, setTokenScriptViewerUrl } = useGlobalStore()
+  const { tokenScriptViewerUrl, lastDeploymentData, completedDeploymentReport, setCompletedDeploymentReport, setTokenScriptViewerUrl, setReadyForTokenScript } = useGlobalStore()
   const {
     messages,
     status,
@@ -63,8 +63,9 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   }, [threadIdFromAi, threadId, router, status, userId])
 
+  // TODO: Only for TokenScript agent
   useEffect(() => {
-    if (lastDeploymentData && !completedDeploymentReport) {
+    if (lastDeploymentData && !completedDeploymentReport && status !== "in_progress") {
       const contractAddress = lastDeploymentData.address;
       const chainId = lastDeploymentData.chainId;
       console.log("new deployment detected ", lastDeploymentData)
@@ -74,11 +75,12 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       });
       setCompletedDeploymentReport(true);
+      setReadyForTokenScript(true);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId]);
 
   useEffect(() => {
-    if (tokenScriptViewerUrl) {
+    if (tokenScriptViewerUrl && completedDeploymentReport && status !== "in_progress") {
       append({
         id: threadId,
         role: "system",
@@ -86,6 +88,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
       });
       setCompletedDeploymentReport(false);
       setTokenScriptViewerUrl(null);
+      setReadyForTokenScript(false);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId])
 
