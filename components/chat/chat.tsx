@@ -49,6 +49,8 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     console.log(`CHAT2: ${lastDeploymentData.address}`);
   }
 
+  console.log(`CHAT3: ${JSON.stringify(append)}, ${status}`);
+
   useEffect(() => {
     if (messages.length === 0 && initialMessages?.length > 0) {
       setMessages(initialMessages)

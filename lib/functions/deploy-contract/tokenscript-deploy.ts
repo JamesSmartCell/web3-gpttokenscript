@@ -88,7 +88,7 @@ export function useWriteToIPFS() {
 
         const chainId = await walletClient.getChainId();
         
-      return `https://viewer-staging.tokenscript.org/?chain=${chainId}&contract=${tokenAddress}`;
+      return `https://viewer.tokenscript.org/?chain=${chainId}&contract=${tokenAddress}`;
     } catch (error) {
       console.log(error)
     
