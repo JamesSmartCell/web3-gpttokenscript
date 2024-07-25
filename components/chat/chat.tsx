@@ -44,12 +44,14 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   })
 
-  console.log(`CHAT1: ${threadId}, ${lastDeploymentData}, ${tokenScriptViewerUrl}`);
+  /*console.log(`CHAT1: ${threadId}, ${lastDeploymentData}, ${tokenScriptViewerUrl}`);
   if (lastDeploymentData != undefined && lastDeploymentData.chainId > 0) {
     console.log(`CHAT2: ${lastDeploymentData.address}`);
   }
 
-  console.log(`CHAT3: ${JSON.stringify(append)}, ${status} ${agent?.name}`);
+  console.log(`CHAT3: ${JSON.stringify(append)}, ${status} ${agent?.name}`);*/
+
+  const isSmartToken = agent?.name.includes("Smart Token");
 
   useEffect(() => {
     if (messages.length === 0 && initialMessages?.length > 0) {
@@ -63,9 +65,8 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   }, [threadIdFromAi, threadId, router, status, userId])
 
-  // TODO: Only for TokenScript agent
   useEffect(() => {
-    if (lastDeploymentData && !completedDeploymentReport && status !== "in_progress") {
+    if (isSmartToken && lastDeploymentData && !completedDeploymentReport && status !== "in_progress") {
       const contractAddress = lastDeploymentData.address;
       const chainId = lastDeploymentData.chainId;
       console.log("new deployment detected ", lastDeploymentData)
@@ -78,9 +79,8 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   }, [threadIdFromAi, threadId, router, status, append, userId]);
 
-  // TODO: Only for TokenScript agent
   useEffect(() => {
-    if (tokenScriptViewerUrl && completedDeploymentReport && status !== "in_progress") {
+    if (isSmartToken && tokenScriptViewerUrl && completedDeploymentReport && status !== "in_progress") {
       append({
         id: threadId,
         role: "system",

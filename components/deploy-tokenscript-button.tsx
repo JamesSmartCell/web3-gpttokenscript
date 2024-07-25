@@ -45,6 +45,7 @@ export const DeployTokenScriptButton = ({ getSourceCode }: DeployContractButtonP
   const { isDeploying, setIsDeploying, setTokenScriptViewerUrl } = useGlobalStore()
   const supportedChains = useChains()
   const { chain } = useAccount()
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const isSupportedChain = useMemo(
     () => !!chain && supportedChains.find((c) => c.id === chain.id),
@@ -92,8 +93,6 @@ export const DeployTokenScriptButton = ({ getSourceCode }: DeployContractButtonP
     ))
   }, [constructorArgNames, constructorArgValues, handleInputChange])
 
-  const contractName = useMemo(() => getContractName(sourceCode), [sourceCode])
-
   const handleDeployToIPFS = async () => {
     setIsDeploying(true)
     setIsErrorDeploying(false)
@@ -112,6 +111,7 @@ export const DeployTokenScriptButton = ({ getSourceCode }: DeployContractButtonP
       setTokenScriptViewerUrl(tokenscriptViewerUrl as string);
 
       setIsDeploying(false)
+      setIsDialogOpen(false); // Close the dialog
     } catch (e) {
       console.error(e)
       setIsErrorDeploying(true)
@@ -122,7 +122,9 @@ export const DeployTokenScriptButton = ({ getSourceCode }: DeployContractButtonP
   return (
     <div className="ml-4 flex w-full justify-end">
       <Dialog
+        open={isDialogOpen}
         onOpenChange={(isOpen) => {
+          setIsDialogOpen(isOpen);
           if (!isOpen && !isDeploying) {
             setIsErrorDeploying(false)
           }
@@ -132,6 +134,7 @@ export const DeployTokenScriptButton = ({ getSourceCode }: DeployContractButtonP
           <Button
             onClick={() => {
               setSourceCode(getSourceCode())
+              setIsDialogOpen(true);
             }}
             className="mr-2 text-primary-foreground"
             variant="default"
