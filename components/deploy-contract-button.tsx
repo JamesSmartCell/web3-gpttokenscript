@@ -22,8 +22,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useDeployWithWallet } from "@/lib/functions/deploy-contract/wallet-deploy"
 
-const [isDialogOpen, setIsDialogOpen] = useState(false);
-
 type DeployContractButtonProps = {
   getSourceCode: () => string
 }
@@ -46,6 +44,7 @@ export const DeployContractButton = ({ getSourceCode }: DeployContractButtonProp
   const { isDeploying, setIsDeploying } = useGlobalStore()
   const supportedChains = useChains()
   const { chain } = useAccount()
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const isSupportedChain = useMemo(
     () => !!chain && supportedChains.find((c) => c.id === chain.id),
