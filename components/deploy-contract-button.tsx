@@ -22,6 +22,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useDeployWithWallet } from "@/lib/functions/deploy-contract/wallet-deploy"
 
+const [isDialogOpen, setIsDialogOpen] = useState(false);
+
 type DeployContractButtonProps = {
   getSourceCode: () => string
 }
@@ -119,6 +121,7 @@ export const DeployContractButton = ({ getSourceCode }: DeployContractButtonProp
 
       setIsDeploying(false)
       console.log(`Complete Deployment`);
+      setIsDialogOpen(false); // Close the dialog
     } catch (e) {
       console.error(e)
       setIsErrorDeploying(true)
@@ -129,7 +132,9 @@ export const DeployContractButton = ({ getSourceCode }: DeployContractButtonProp
   return (
     <div className="ml-4 flex w-full justify-end">
       <Dialog
+        open={isDialogOpen}
         onOpenChange={(isOpen) => {
+          setIsDialogOpen(isOpen);
           if (!isOpen && !isDeploying) {
             setIsErrorDeploying(false)
           }
@@ -139,6 +144,7 @@ export const DeployContractButton = ({ getSourceCode }: DeployContractButtonProp
           <Button
             onClick={() => {
               setSourceCode(getSourceCode())
+              setIsDialogOpen(true);
             }}
             className="mr-2 text-primary-foreground"
             variant="default"
