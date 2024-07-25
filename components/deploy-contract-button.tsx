@@ -118,6 +118,7 @@ export const DeployContractButton = ({ getSourceCode }: DeployContractButtonProp
       setIpfsUrl(ipfsUrl)
 
       setIsDeploying(false)
+      console.log(`Complete Deployment`);
     } catch (e) {
       console.error(e)
       setIsErrorDeploying(true)

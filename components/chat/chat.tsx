@@ -28,7 +28,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
   const avatarUrl = session?.user?.image
   const userId = session?.user?.id
   const router = useRouter()
-  const { tokenScriptViewerUrl, lastDeploymentData, completedDeploymentReport, setCompletedDeploymentReport, setTokenScriptViewerUrl, setReadyForTokenScript } = useGlobalStore()
+  const { tokenScriptViewerUrl, lastDeploymentData, completedDeploymentReport, setCompletedDeploymentReport, setTokenScriptViewerUrl } = useGlobalStore()
   const {
     messages,
     status,
@@ -49,7 +49,7 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     console.log(`CHAT2: ${lastDeploymentData.address}`);
   }
 
-  console.log(`CHAT3: ${JSON.stringify(append)}, ${status}`);
+  console.log(`CHAT3: ${JSON.stringify(append)}, ${status} ${agent?.name}`);
 
   useEffect(() => {
     if (messages.length === 0 && initialMessages?.length > 0) {
@@ -75,10 +75,10 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
       });
       setCompletedDeploymentReport(true);
-      setReadyForTokenScript(true);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId]);
 
+  // TODO: Only for TokenScript agent
   useEffect(() => {
     if (tokenScriptViewerUrl && completedDeploymentReport && status !== "in_progress") {
       append({
@@ -87,7 +87,6 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
         content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
       });
       setTokenScriptViewerUrl(null);
-      setReadyForTokenScript(false);
     }
   }, [threadIdFromAi, threadId, router, status, append, userId])
 

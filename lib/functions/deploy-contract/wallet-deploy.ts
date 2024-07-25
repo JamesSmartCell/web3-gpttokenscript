@@ -149,7 +149,7 @@ export function useDeployWithWallet() {
       return
     }
 
-    const deployLoadingToast = toast.loading("Deploying contract...")
+    const deployLoadingToast = toast.loading("Deploying contract...");
 
     setCompletedDeploymentReport(false);
 
