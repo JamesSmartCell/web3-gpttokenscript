@@ -44,6 +44,13 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   })
 
+  /*console.log(`CHAT1: ${threadId}, ${lastDeploymentData}, ${tokenScriptViewerUrl}`);
+  if (lastDeploymentData != undefined && lastDeploymentData.chainId > 0) {
+    console.log(`CHAT2: ${lastDeploymentData.address}`);
+  }
+
+  console.log(`CHAT3: ${JSON.stringify(append)}, ${status} ${agent?.name}`);*/
+
   const isSmartToken = agent?.name.includes("Smart Token");
 
   useEffect(() => {
@@ -52,39 +59,36 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   }, [initialMessages, messages, setMessages])
 
-  // Effects only processed when AI chat feedback is completed
-  if (status !== "in_progress") {
-    useEffect(() => {
-      if (userId && threadIdFromAi && threadIdFromAi !== threadId) {
-        router.replace(`/chat/${threadIdFromAi}`, { scroll: false })
-      }
-    }, [threadIdFromAi, threadId, router, status, userId])
+  useEffect(() => {
+    if (userId && threadIdFromAi && threadIdFromAi !== threadId && status !== "in_progress") {
+      router.replace(`/chat/${threadIdFromAi}`, { scroll: false })
+    }
+  }, [threadIdFromAi, threadId, router, status, userId])
 
-    useEffect(() => {
-      if (isSmartToken && lastDeploymentData && !completedDeploymentReport) {
-        const contractAddress = lastDeploymentData.address;
-        const chainId = lastDeploymentData.chainId;
-        console.log("new deployment detected ", lastDeploymentData)
-        append({
-          id: threadId,
-          role: "system",
-          content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
-        });
-        setCompletedDeploymentReport(true);
-      }
-    }, [threadIdFromAi, threadId, router, status, append, userId]);
+  useEffect(() => {
+    if (isSmartToken && lastDeploymentData && !completedDeploymentReport && status !== "in_progress") {
+      const contractAddress = lastDeploymentData.address;
+      const chainId = lastDeploymentData.chainId;
+      console.log("new deployment detected ", lastDeploymentData)
+      append({
+        id: threadId,
+        role: "system",
+        content: `The user has successfully deployed a contract manually here are the details: \n\n Address: ${contractAddress} ChainId: ${chainId}`
+      });
+      setCompletedDeploymentReport(true);
+    }
+  }, [threadIdFromAi, threadId, router, status, append, userId]);
 
-    useEffect(() => {
-      if (tokenScriptViewerUrl && completedDeploymentReport) {
-        append({
-          id: threadId,
-          role: "system",
-          content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
-        });
-        setTokenScriptViewerUrl(null);
-      }
-    }, [threadIdFromAi, threadId, router, status, append, userId])
-  }
+  useEffect(() => {
+    if (tokenScriptViewerUrl && completedDeploymentReport && status !== "in_progress") {
+      append({
+        id: threadId,
+        role: "system",
+        content: `The user has set the scriptURI and deployed the TokenScript here are the details for you to share with the user: \n\n${JSON.stringify(tokenScriptViewerUrl, null, 2)}`
+      });
+      setTokenScriptViewerUrl(null);
+    }
+  }, [threadIdFromAi, threadId, router, status, append, userId])
 
   return (
     <>
