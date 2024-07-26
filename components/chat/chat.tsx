@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 
 import { useAssistant, type Message } from "ai/react"
@@ -44,14 +44,10 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   })
 
-  /*console.log(`CHAT1: ${threadId}, ${lastDeploymentData}, ${tokenScriptViewerUrl}`);
-  if (lastDeploymentData != undefined && lastDeploymentData.chainId > 0) {
-    console.log(`CHAT2: ${lastDeploymentData.address}`);
-  }
-
-  console.log(`CHAT3: ${JSON.stringify(append)}, ${status} ${agent?.name}`);*/
-
   const isSmartToken = agent?.name.includes("Smart Token");
+
+  // Ref for chat container
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messages.length === 0 && initialMessages?.length > 0) {
@@ -90,9 +86,16 @@ export const Chat = ({ threadId, initialMessages = [], agent, className, session
     }
   }, [threadIdFromAi, threadId, router, status, append, userId])
 
+  // Scroll to bottom when deployment completes
+  useEffect(() => {
+    if (completedDeploymentReport && chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [completedDeploymentReport, messages]);
+
   return (
     <>
-      <div className={cn("px-4 pb-[200px] pt-4 md:pt-10", className)}>
+      <div ref={chatContainerRef} className={cn("px-4 pb-[200px] pt-4 md:pt-10", className)}>
         {agent ? <AgentCard agent={agent} /> : <Landing userId={userId} />}
         <ChatList messages={messages} avatarUrl={avatarUrl} status={status} />
         <ChatScrollAnchor trackVisibility={status === "in_progress"} />
